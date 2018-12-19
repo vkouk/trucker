@@ -2,14 +2,14 @@
   "name": "truck-app",
   "version": "1.0.0",
   "description": "Create - Update - Fetch all available trucks.",
-  "main": "server.js",
+  "main": "index.ts",
   "engines": {
     "node": "11.3.0",
     "npm": "6.5.0"
   },
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts --exec babel-node --extensions '.ts' src/server.ts",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts --exec babel-node --extensions '.ts' src/index.ts",
     "build": "babel src -d dist --extensions '.ts' --source-maps inline"
   },
   "author": "Vasilis Koukoutis",
@@ -18,12 +18,14 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "knex": "^0.16.3",
-    "pg": "^7.7.1"
+    "pg": "^7.7.1",
+    "sqlite3": "^4.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
     "@babel/node": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/plugin-transform-typescript": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
@@ -37,7 +39,8 @@
     ],
     "plugins": [
       "@babel/plugin-transform-typescript",
-      "@babel/plugin-proposal-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-class-properties"
     ]
   }
 }

@@ -1,5 +1,17 @@
-import express from "express";
+import { Response, Request } from "express";
 
-const truckRouter = express.Router;
+export class TruckRouter {
+  public routes(app, Knex): void {
+    /**
+     * fetchTrucks
+     */
+    app.get(
+      "/api/trucks",
+      async (req: Request, res: Response): Response => {
+        const trucks: Array<Object> = await Knex.select("*").from("trucks");
 
-export const truckRouter;
+        return res.json(trucks);
+      }
+    );
+  }
+}

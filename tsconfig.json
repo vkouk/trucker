@@ -6,7 +6,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "jsx": "react",
     "target": "es2017",
     "lib": ["es6", "dom", "dom.iterable", "scripthost"],
     "module": "commonjs",

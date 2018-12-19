@@ -1,0 +1,10 @@
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 1', 'Model 1', 'Scania', 'IZ-2122', 'blue', 'S', '[{ "latitude": 1.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 2', 'Model 2', 'Toyota', 'IZ-2123', 'green', 'M', '[{ "latitude": 1.2, "longitude": 2.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 3', 'Model 3', 'Nissan', 'IZ-2124', 'red', 'XL', '[{ "latitude": 3.3, "longitude": 3.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 4', 'Model 4', 'Scania', 'IZ-2125', 'yellow', 'XXL', '[{ "latitude": 3.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 5', 'Model 5', 'Toyota', 'IZ-2126', 'pink', 'XS', '[{ "latitude": 1.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 6', 'Model 6', 'Bugatti', 'IZ-2127', 'red', 'XS', '[{ "latitude": 3.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 7', 'Model 7', 'Scania', 'IZ-2128', 'green', 'M', '[{ "latitude": 1.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 8', 'Model 8', 'Toyota', 'IZ-2129', 'blue', 'S', '[{ "latitude": 1.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 9', 'Model 9', 'Scania', 'IZ-2130', 'blue', 'S', '[{ "latitude": 1.1, "longitude": 1.2 }]');
+insert into trucks (title, model, brand, licence, color, size, locations) values ('Truck 10', 'Model 10', 'Scania', 'IZ-2131', 'yellow', 'S', '[{ "latitude": 1.1, "longitude": 1.2 }]');

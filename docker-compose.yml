@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  # Postgres
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_URL: postgres://admin:password@localhost:5432/trucker
+      POSTGRES_DB: trucker
+      POSTGRES_HOST: postgres
+    ports:
+      - "5432:5432"
+
+  # Backend API
+  movieholic-api:
+    container_name: backend
+    build: ./
+    command: npm run dev
+    working_dir: /usr/src/truck-app
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/usr/src/truck-app

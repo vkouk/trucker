@@ -45,5 +45,21 @@ export class TruckRouter {
         return res.json(truckLocations);
       }
     );
+
+    /**
+     * create new truck
+     */
+    app.post(
+      "/api/truck",
+      (req: Request, res: Response): Response => {
+        return Knex("trucks")
+          .insert(req.body)
+          .then(() => {
+            return res.json({
+              message: "You have succesfully added your new truck!"
+            });
+          });
+      }
+    );
   }
 }

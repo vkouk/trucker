@@ -8,7 +8,7 @@ CREATE TABLE trucks (
     licence text,
     color text,
     size text,
-    locations json
+    locations jsonb
 );
 
 COMMIT;

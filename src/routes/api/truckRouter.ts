@@ -29,22 +29,42 @@ export class TruckRouter {
     );
 
     /**
-     * fetch all truck's locstions
+     * fetch/update truck's locstions
      */
-    app.get(
-      "/api/truck/:title/locations",
-      async (req: Request, res: Response): Response => {
-        const truckLocations: Array<Object> = await Knex.select(
-          "id",
-          "title",
-          "locations"
-        )
-          .from("trucks")
-          .where("title", req.params.title);
+    app
+      .route("/api/truck/:title/locations")
+      .get(
+        async (req: Request, res: Response): Response => {
+          const truckLocations: Array<Object> = await Knex.select("locations")
+            .from("trucks")
+            .where("title", req.params.title);
 
-        return res.json(truckLocations);
-      }
-    );
+          return res.json(truckLocations[0]);
+        }
+      )
+      .post(
+        async (req: Request, res: Response): Response => {
+          const prevLocations: Array<Object> = await Knex.select("locations")
+            .from("trucks")
+            .where("title", req.params.title);
+
+          return Knex("trucks")
+            .update({
+              locations: {
+                ...prevLocations[0].locations,
+                ...req.body.locations
+              }
+            })
+            .where("title", req.params.title)
+            .then(() => {
+              res.json({
+                message: `You have succesfully add new locations for ${
+                  req.params.title
+                }!`
+              });
+            });
+        }
+      );
 
     /**
      * create new truck
@@ -54,6 +74,32 @@ export class TruckRouter {
       (req: Request, res: Response): Response => {
         return Knex("trucks")
           .insert(req.body)
+          .then(() => {
+            return res.json({
+              message: "You have succesfully added your new truck!"
+            });
+          });
+      }
+    );
+
+    /**
+     * edit existing truck
+     */
+    app.put(
+      "/api/truck/:id/edit",
+      (req: Request, res: Response): Response => {
+        const { title, model, brand, licence, color, size } = req.body;
+
+        return Knex("trucks")
+          .where("id", req.params.id)
+          .update({
+            title,
+            model,
+            brand,
+            licence,
+            color,
+            size
+          })
           .then(() => {
             return res.json({
               message: "You have succesfully added your new truck!"

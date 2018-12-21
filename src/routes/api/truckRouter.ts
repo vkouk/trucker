@@ -10,7 +10,7 @@ export class TruckRouter {
       async (req: Request, res: Response): Response => {
         const trucks: Array<Object> = await Knex.select("*").from("trucks");
 
-        return res.json(trucks);
+        return res.status(200).json(trucks);
       }
     );
 
@@ -24,7 +24,7 @@ export class TruckRouter {
           .from("trucks")
           .where("title", req.params.title);
 
-        return res.json(truck);
+        return res.status(200).json(truck);
       }
     );
 
@@ -39,30 +39,33 @@ export class TruckRouter {
             .from("trucks")
             .where("title", req.params.title);
 
-          return res.json(truckLocations[0]);
+          return res.status(200).json(truckLocations[0]);
         }
       )
       .post(
         async (req: Request, res: Response): Response => {
-          const prevLocations: Array<Object> = await Knex.select("locations")
+          const [prevLocations]: Array<Object> = await Knex.select("locations")
             .from("trucks")
             .where("title", req.params.title);
 
+          const data: Array<Object> = [
+            ...prevLocations.locations,
+            req.body.locations
+          ];
+
           return Knex("trucks")
-            .update({
-              locations: {
-                ...prevLocations[0].locations,
-                ...req.body.locations
-              }
-            })
             .where("title", req.params.title)
+            .update({
+              locations: JSON.stringify(data)
+            })
             .then(() => {
-              res.json({
-                message: `You have succesfully add new locations for ${
+              return res.status(200).json({
+                message: `Thanks for inserting new locations at ${
                   req.params.title
                 }!`
               });
-            });
+            })
+            .toString();
         }
       );
 
@@ -75,7 +78,7 @@ export class TruckRouter {
         return Knex("trucks")
           .insert(req.body)
           .then(() => {
-            return res.json({
+            return res.status(200).json({
               message: "You have succesfully added your new truck!"
             });
           });
@@ -101,8 +104,8 @@ export class TruckRouter {
             size
           })
           .then(() => {
-            return res.json({
-              message: "You have succesfully added your new truck!"
+            return res.status(200).json({
+              message: "You have succesfully edited yoru truck!"
             });
           });
       }

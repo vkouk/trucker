@@ -105,7 +105,7 @@ export class TruckRouter {
           })
           .then(() => {
             return res.status(200).json({
-              message: "You have succesfully edited yoru truck!"
+              message: "You have succesfully edited your truck!"
             });
           });
       }
